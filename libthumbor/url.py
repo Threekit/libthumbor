@@ -168,6 +168,7 @@ class Url:
     meta = r"(?:(?P<meta>meta)/)?"
     trim = r"(?:(?P<trim>trim(?::(?:top-left|bottom-right))?(?::\d+)?)/)?"
     crop = r"(?:(?P<crop_left>\d+)x(?P<crop_top>\d+):(?P<crop_right>\d+)x(?P<crop_bottom>\d+)/)?"
+    power2 = r"(?:(?P<power2>power2)/)?"
     fit_in = r"(?:(?P<adaptive>adaptive-)?(?P<full>full-)?(?P<fit_in>fit-in)/)?"
     dimensions = r"(?:(?P<horizontal_flip>-)?(?P<width>(?:\d+|orig))?x(?P<vertical_flip>-)?(?P<height>(?:\d+|orig))?/)?"
     halign = r"(?:(?P<halign>left|right|center)/)?"
@@ -188,6 +189,7 @@ class Url:
         reg.append(cls.meta)
         reg.append(cls.trim)
         reg.append(cls.crop)
+        reg.append(cls.power2)
         reg.append(cls.fit_in)
         reg.append(cls.dimensions)
         reg.append(cls.halign)
@@ -228,6 +230,7 @@ class Url:
                 "right": int_or_0(result["crop_right"]),
                 "bottom": int_or_0(result["crop_bottom"]),
             },
+            "power2": result["power2"] == "power2",
             "adaptive": adaptive,
             "full": full,
             "fit_in": result["fit_in"] == "fit-in",
