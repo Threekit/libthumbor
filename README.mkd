@@ -30,12 +30,20 @@ Check the wiki for more information on using libthumbor.
 
 ### Bernardo Heynemann
 
-* Generic URL encryption
+- Generic URL encryption
 
 ### Rafael Caricio
 
-* Django Generic View and URL
+- Django Generic View and URL
 
 ### Fábio Costa
 
-* Django Generic View and URL
+- Django Generic View and URL
+
+# Custom Build
+
+- `poetry build` to create `dist/libthumbor-<version>.tar.gz`
+- untar that `tar.gz` right there
+- `cd` in `libthumbor-<version>`
+- `python3 setup.py install --prefix .` to create `dist/libthumbor-<version>-py<python version>.egg`
+- use `libthumbor-<version>-py<python version>.egg` to update the Dockerfile
