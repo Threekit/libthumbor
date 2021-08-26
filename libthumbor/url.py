@@ -158,7 +158,8 @@ class Url(object):
     meta = r'(?:(?P<meta>meta)/)?'
     trim = r'(?:(?P<trim>trim(?::(?:top-left|bottom-right))?(?::\d+)?)/)?'
     crop = r'(?:(?P<crop_left>\d+)x(?P<crop_top>\d+):(?P<crop_right>\d+)x(?P<crop_bottom>\d+)/)?'
-    power2 = r"(?:(?P<power2>power2)/)?"
+    #power2 = r"(?:(?P<power2>power2)/)?"
+    power2 = r"(?:power2-(?P<power2>16|32|64|128|256|512|1024|2048|4096|8192)/)?"
     fit_in = r'(?:(?P<adaptive>adaptive-)?(?P<full>full-)?(?P<fit_in>fit-in)/)?'
     dimensions = r'(?:(?P<horizontal_flip>-)?(?P<width>(?:\d+|orig))?x(?P<vertical_flip>-)?(?P<height>(?:\d+|orig))?/)?'
     halign = r'(?:(?P<halign>left|right|center)/)?'
@@ -220,7 +221,7 @@ class Url(object):
                 'right': int_or_0(result['crop_right']),
                 'bottom': int_or_0(result['crop_bottom'])
             },
-            "power2": result["power2"] == "power2",
+            "power2": int_or_0(result["power2"]),
             'adaptive': adaptive,
             'full': full,
             'fit_in': result['fit_in'] == 'fit-in',
