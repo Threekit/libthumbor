@@ -159,6 +159,7 @@ class Url(object):
     trim = r'(?:(?P<trim>trim(?::(?:top-left|bottom-right))?(?::\d+)?)/)?'
     crop = r'(?:(?P<crop_left>\d+)x(?P<crop_top>\d+):(?P<crop_right>\d+)x(?P<crop_bottom>\d+)/)?'
     #power2 = r"(?:(?P<power2>power2)/)?"
+    vector = r'(?:(?P<vector>vector)/)?'
     power2 = r"(?:power2-(?P<power2>16|32|64|128|256|512|1024|2048|4096|8192)/)?"
     fit_in = r'(?:(?P<adaptive>adaptive-)?(?P<full>full-)?(?P<fit_in>fit-in)/)?'
     dimensions = r'(?:(?P<horizontal_flip>-)?(?P<width>(?:\d+|orig))?x(?P<vertical_flip>-)?(?P<height>(?:\d+|orig))?/)?'
@@ -181,6 +182,7 @@ class Url(object):
         reg.append(cls.trim)
         reg.append(cls.crop)
         reg.append(cls.power2)
+        reg.append(cls.vector)
         reg.append(cls.fit_in)
         reg.append(cls.dimensions)
         reg.append(cls.halign)
@@ -221,6 +223,7 @@ class Url(object):
                 'right': int_or_0(result['crop_right']),
                 'bottom': int_or_0(result['crop_bottom'])
             },
+            'vector': result['vector'] == 'vector',
             "power2": int_or_0(result["power2"]),
             'adaptive': adaptive,
             'full': full,
